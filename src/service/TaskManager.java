@@ -10,19 +10,13 @@ import java.util.HashMap;
 import java.util.List;
 
 public class TaskManager {
-    private final HashMap<Integer, Task> tasks;
-    private final HashMap<Integer, Epic> epics;
-    private final HashMap<Integer, SubTask> subTasks;
-    int seq = 0;
+    private final HashMap<Integer, Task> tasks = new HashMap<>();
+    private final HashMap<Integer, Epic> epics = new HashMap<>();
+    private final HashMap<Integer, SubTask> subTasks = new HashMap<>();
+    private static int seq = 0;
 
     private int generateId() {
         return ++seq;
-    }
-
-    public TaskManager() {
-        this.tasks = new HashMap<>();
-        this.epics = new HashMap<>();
-        this.subTasks = new HashMap<>();
     }
 
     public Task create(Task task) {
@@ -32,6 +26,7 @@ public class TaskManager {
     }
 
     public Epic createEpic(Epic epic) {
+        calculateEpicStatus(epic);
         epic.setId(generateId());
         epics.put(epic.getId(), epic);
         return epic;
@@ -40,7 +35,13 @@ public class TaskManager {
     public SubTask createSubTask(SubTask subTask) {
         subTask.setId(generateId());
         subTasks.put(subTask.getId(), subTask);
-        epics.get(subTask.getEpicId()).setSubTaskId(subTask.getId());
+        Epic saved = epics.get(subTask.getEpicId());
+        if (saved == null) {
+            System.out.println("Такого эпика нет в списке!");
+        } else {
+            saved.addSubTaskId(subTask.getId());
+            calculateEpicStatus(saved);
+        }
         return subTask;
     }
 
@@ -68,6 +69,7 @@ public class TaskManager {
         saved.setStatus(epic.getStatus());
         saved.setName(epic.getName());
         saved.setDescription(epic.getDescription());
+        saved.setSubTasksId(saved.getSubTasksId());
     }
 
     public void updateSubTask(SubTask subTask) {
@@ -78,6 +80,7 @@ public class TaskManager {
         int epicId = subTask.getEpicId();
         Epic savedEpic = epics.get(epicId);
         calculateEpicStatus(savedEpic);
+        savedEpic.setId(generateId());
     }
 
     public List<Task> getAll() {
