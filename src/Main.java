@@ -1,19 +1,20 @@
 import model.Epic;
-import model.Status;
+import model.TaskStatus;
 import model.SubTask;
 import model.Task;
+import service.Managers;
 import service.TaskManager;
 
 public class Main {
 
     public static void main(String[] args) {
-        TaskManager taskManager = new TaskManager();
-        Task task = taskManager.create(new Task("Новая задача", Status.NEW, "Описание цели задачи"));
-        Task task2 = taskManager.create(new Task("Вторая задача", Status.NEW, "2-ое Описание цели задачи"));
-        Epic epic = taskManager.createEpic(new Epic("Новый эпик", Status.NEW, "Описание эпика"));
-        SubTask subTask = taskManager.createSubTask(new SubTask("Новая подзадача", Status.NEW,
+        TaskManager taskManager = Managers.getDefaultTaskManager();
+        Task task = taskManager.create(new Task("Новая задача", TaskStatus.NEW, "Описание цели задачи"));
+        Task task2 = taskManager.create(new Task("Вторая задача", TaskStatus.NEW, "2-ое Описание цели задачи"));
+        Epic epic = taskManager.createEpic(new Epic("Новый эпик", TaskStatus.NEW, "Описание эпика"));
+        SubTask subTask = taskManager.createSubTask(new SubTask("Новая подзадача", TaskStatus.NEW,
                 "Описание подзадачи", epic.getId()));
-        SubTask subTask2 = taskManager.createSubTask(new SubTask("Вторая подзадача", Status.NEW,
+        SubTask subTask2 = taskManager.createSubTask(new SubTask("Вторая подзадача", TaskStatus.NEW,
                 "2-ое Описание подзадачи", epic.getId()));
         System.out.println("Create task: " + task);
         System.out.println("Create task2: " + task2);

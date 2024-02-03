@@ -3,12 +3,12 @@ package model;
 public class Task {
     private int id;
     private String name;
-    private Status status;
+    private TaskStatus taskStatus;
     private String description;
 
-    public Task(String name, Status status, String description) {
+    public Task(String name, TaskStatus taskStatus, String description) {
         this.name = name;
-        this.status = status;
+        this.taskStatus = taskStatus;
         this.description = description;
     }
 
@@ -28,12 +28,12 @@ public class Task {
         this.name = name;
     }
 
-    public Status getStatus() {
-        return status;
+    public TaskStatus getStatus() {
+        return taskStatus;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setStatus(TaskStatus taskStatus) {
+        this.taskStatus = taskStatus;
     }
 
     public String getDescription() {
@@ -49,7 +49,7 @@ public class Task {
         return "Task{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", status='" + status + '\'' +
+                ", status='" + taskStatus + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }
