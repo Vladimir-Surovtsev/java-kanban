@@ -104,24 +104,24 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public List<Task> getAll() {
+    public List<Task> getTasks() {
         return new ArrayList<>(tasks.values());
     }
 
     @Override
-    public List<Epic> getAllEpic() {
+    public List<Task> getEpics() {
         return new ArrayList<>(epics.values());
     }
 
     @Override
-    public List<SubTask> getAllSubTask() {
+    public List<Task> getSubtasks() {
         return new ArrayList<>(subTasks.values());
     }
 
     @Override
-    public List<SubTask> getAllEpicSubTask(Epic epic) {
-        List<SubTask> allSub = new ArrayList<>();
-        for (int subId : epic.getSubTasksId()) {
+    public List<Task> getEpicSubtasks(int epicId) {
+        List<Task> allSub = new ArrayList<>();
+        for (int subId : epics.get(epicId).getSubTasksId()) {
             allSub.add(subTasks.get(subId));
         }
         return allSub;

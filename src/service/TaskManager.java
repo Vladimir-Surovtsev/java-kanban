@@ -25,13 +25,13 @@ public interface TaskManager {
 
     void updateSubTask(SubTask subTask);
 
-    List<Task> getAll();
+    List<Task> getTasks();
 
-    List<Epic> getAllEpic();
+    List<Task> getEpics();
 
-    List<SubTask> getAllSubTask();
+    List<Task> getSubtasks();
 
-    List<SubTask> getAllEpicSubTask(Epic epic);
+    List<Task> getEpicSubtasks(int id);
 
     void deleteAll();
 
