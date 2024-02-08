@@ -14,7 +14,7 @@ public class InMemoryTaskManager implements TaskManager {
     private final HashMap<Integer, Epic> epics;
     private final HashMap<Integer, SubTask> subTasks;
     private final HistoryManager historyStorage;
-    private static int seq = 0;
+    private int seq = 0;
 
     private int generateId() {
         return ++seq;
@@ -171,7 +171,11 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public void calculateEpicStatus(Epic epic) {
+    public List<Task> getHistory() {
+        return historyStorage.getTasksFromHistory();
+    }
+
+    private void calculateEpicStatus(Epic epic) {
         int countNew = 0;
         int countDone = 0;
         for (int id : epic.getSubTasksId()) {
@@ -189,11 +193,6 @@ public class InMemoryTaskManager implements TaskManager {
         } else {
             epic.setStatus(TaskStatus.IN_PROGRESS);
         }
-    }
-
-    @Override
-    public List<Task> getHistory() {
-        return historyStorage.getTasksFromHistory();
     }
 
 }
