@@ -13,9 +13,9 @@ public class Main {
         Task task2 = taskManager.create(new Task("Вторая задача", "2-ое Описание цели задачи", TaskStatus.NEW));
         Epic epic = taskManager.createEpic(new Epic("Новый эпик", "Описание эпика", TaskStatus.NEW));
         SubTask subTask = taskManager.createSubTask(new SubTask("Новая подзадача",
-                "Описание подзадачи", TaskStatus.NEW, epic.getId()));
+                "Описание подзадачи", TaskStatus.NEW));
         SubTask subTask2 = taskManager.createSubTask(new SubTask("Вторая подзадача",
-                "2-ое Описание подзадачи", TaskStatus.NEW, epic.getId()));
+                "2-ое Описание подзадачи", TaskStatus.NEW));
         System.out.println("Create task: " + task);
         System.out.println("Create task2: " + task2);
         System.out.println("Create epic: " + epic);
