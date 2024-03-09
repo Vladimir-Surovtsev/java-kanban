@@ -1,9 +1,9 @@
 package service;
 
 import model.Epic;
-import model.TaskStatus;
 import model.SubTask;
 import model.Task;
+import model.TaskStatus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -149,6 +149,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public void delete(int id) {
         tasks.remove(id);
+        historyStorage.remove(id);
     }
 
     @Override
