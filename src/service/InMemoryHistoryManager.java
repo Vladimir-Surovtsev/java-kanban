@@ -20,8 +20,8 @@ public class InMemoryHistoryManager implements HistoryManager {
     }
 
     private final HashMap<Integer, Node> history = new HashMap<>();
-    Node first;
-    Node last;
+    private Node first;
+    private Node last;
 
 
     @Override
@@ -51,7 +51,7 @@ public class InMemoryHistoryManager implements HistoryManager {
         removeNode(node);
     }
 
-    void linkLast(Task task) {
+    private void linkLast(Task task) {
         final Node l = last;
         final Node newNode = new Node(l, task, null);
         last = newNode;
@@ -65,6 +65,7 @@ public class InMemoryHistoryManager implements HistoryManager {
     private void removeNode(Node node) {
         if (node != null) {
             history.remove(node.item.getId());
+            linkLast(node.item);
         }
     }
 }
