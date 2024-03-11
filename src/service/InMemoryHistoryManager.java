@@ -8,9 +8,9 @@ import java.util.List;
 
 public class InMemoryHistoryManager implements HistoryManager {
     private static class Node {
-        Task item;
-        Node next;
-        Node prev;
+        private final Task item;
+        private Node next;
+        private Node prev;
 
         Node(Node prev, Task element, Node next) {
             this.item = element;
@@ -64,8 +64,19 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     private void removeNode(Node node) {
         if (node != null) {
+            if (node.next != null) {
+                first.next = node.next;
+            } else {
+                first.next = null;
+            }
+
+            if (node.prev != null) {
+                last.prev = node.prev;
+            } else {
+                last.prev = null;
+            }
+
             history.remove(node.item.getId());
-            linkLast(node.item);
         }
     }
 }
