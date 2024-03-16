@@ -65,10 +65,10 @@ public class InMemoryHistoryManager implements HistoryManager {
     private void removeNode(Node node) {
         if (node == null) {
             return;
-        } else if (node == first) {
+        } else if (node.prev == null) {
             first = first.next;
-        } else if (node == last) {
-            last = last.prev;
+        } else if (node.next == null) {
+            last = node.prev;
         } else {
             node.prev.next = node.next;
             node.next.prev = node.prev;
