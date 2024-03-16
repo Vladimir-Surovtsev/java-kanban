@@ -1,7 +1,7 @@
 import model.Epic;
-import model.TaskStatus;
 import model.SubTask;
 import model.Task;
+import model.TaskStatus;
 import service.Managers;
 import service.TaskManager;
 
@@ -29,6 +29,13 @@ public class Main {
         Task subtaskFromManager = taskManager.getSubTask(subTask.getId());
         System.out.println("Get subtask: " + subtaskFromManager);
 
+        Task taskFromManager2 = taskManager.get(task2.getId());
+        System.out.println("Get task: " + taskFromManager2);
+        Task subtaskFromManager2 = taskManager.getSubTask(subTask2.getId());
+        System.out.println("Get subtask: " + subtaskFromManager2);
+        Task taskFromManager3 = taskManager.get(task.getId());
+        System.out.println("Get task: " + taskFromManager3);
+
         taskFromManager.setName("New name");
         taskManager.update(taskFromManager);
         System.out.println("Update task: " + taskFromManager);
@@ -38,6 +45,7 @@ public class Main {
 
         printAllTasks(taskManager);
     }
+
     private static void printAllTasks(TaskManager manager) {
         System.out.println("Задачи:");
         for (Task task : manager.getTasks()) {
