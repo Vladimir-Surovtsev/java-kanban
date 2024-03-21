@@ -1,7 +1,7 @@
 import model.Epic;
+import model.Status;
 import model.SubTask;
 import model.Task;
-import model.TaskStatus;
 import service.Managers;
 import service.TaskManager;
 
@@ -9,13 +9,13 @@ public class Main {
 
     public static void main(String[] args) {
         TaskManager taskManager = Managers.getDefaultTaskManager();
-        Task task = taskManager.create(new Task("Новая задача", "Описание цели задачи", TaskStatus.NEW));
-        Task task2 = taskManager.create(new Task("Вторая задача", "2-ое Описание цели задачи", TaskStatus.NEW));
-        Epic epic = taskManager.createEpic(new Epic("Новый эпик", "Описание эпика", TaskStatus.NEW));
+        Task task = taskManager.create(new Task("Новая задача", "Описание цели задачи", Status.NEW));
+        Task task2 = taskManager.create(new Task("Вторая задача", "2-ое Описание цели задачи", Status.NEW));
+        Epic epic = taskManager.createEpic(new Epic("Новый эпик", "Описание эпика", Status.NEW));
         SubTask subTask = taskManager.createSubTask(new SubTask("Новая подзадача",
-                "Описание подзадачи", TaskStatus.NEW));
+                "Описание подзадачи", Status.NEW, epic.getId()));
         SubTask subTask2 = taskManager.createSubTask(new SubTask("Вторая подзадача",
-                "2-ое Описание подзадачи", TaskStatus.NEW));
+                "2-ое Описание подзадачи", Status.NEW, epic.getId()));
         System.out.println("Create task: " + task);
         System.out.println("Create task2: " + task2);
         System.out.println("Create epic: " + epic);

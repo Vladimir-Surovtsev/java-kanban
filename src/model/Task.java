@@ -3,12 +3,12 @@ package model;
 public class Task {
     private int id;
     private String name;
-    private TaskStatus taskStatus;
+    private Status status;
     private String description;
 
-    public Task(String name, String description, TaskStatus taskStatus) {
+    public Task(String name, String description, Status status) {
         this.name = name;
-        this.taskStatus = taskStatus;
+        this.status = status;
         this.description = description;
     }
 
@@ -28,12 +28,12 @@ public class Task {
         this.name = name;
     }
 
-    public TaskStatus getStatus() {
-        return taskStatus;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setStatus(TaskStatus taskStatus) {
-        this.taskStatus = taskStatus;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public String getDescription() {
@@ -42,6 +42,14 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public TaskType getType() {
+        return TaskType.TASK;
+    }
+
+    public Integer getEpicId() {
+        return null;
     }
 
     @Override
@@ -62,7 +70,7 @@ public class Task {
         return "Task{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", status='" + taskStatus + '\'' +
+                ", status='" + status + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }

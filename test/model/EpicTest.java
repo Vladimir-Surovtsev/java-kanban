@@ -2,11 +2,11 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EpicTest {
-    private final Epic epic = new Epic("name", "desc", TaskStatus.NEW);
-    private final Epic epicExpected = new Epic("name2", "desc2", TaskStatus.DONE);
+    private final Epic epic = new Epic("name", "desc", Status.NEW);
+    private final Epic epicExpected = new Epic("name2", "desc2", Status.DONE);
 
     @Test
     void checkEpicsAreEqualIfIdentifiersAreEqual() {

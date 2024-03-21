@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static model.TaskStatus.NEW;
+import static model.Status.NEW;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -55,7 +55,7 @@ class InMemoryTaskManagerTest {
 
     @Test
     void addNewSubTask() {
-        SubTask subTask = new SubTask("Test addNewSubTask", "Test addNewSubTask description", NEW);
+        SubTask subTask = new SubTask("Test addNewSubTask", "Test addNewSubTask description", NEW, 22);
         subTask.setId(22);
 
         final int subTaskId = taskManager.createSubTask(subTask).getId();
@@ -76,7 +76,7 @@ class InMemoryTaskManagerTest {
     void equalsTasks() {
         Epic epic = new Epic("Test addNewEpic", "Test addNewEpic description", NEW);
         epic.setId(31);
-        SubTask subTask = new SubTask("Test addNewSubTask", "Test addNewSubTask description", NEW);
+        SubTask subTask = new SubTask("Test addNewSubTask", "Test addNewSubTask description", NEW, 31);
         subTask.setId(31);
         assertEquals(epic, subTask, "Наследники класса Task должны быть равны друг другу, если равен их id");
     }

@@ -2,11 +2,11 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SubTaskTest {
-    private final SubTask subTask = new SubTask("name", "desc", TaskStatus.NEW);
-    private final SubTask subTask2 = new SubTask("name2", "desc2", TaskStatus.IN_PROGRESS);
+    private final SubTask subTask = new SubTask("name", "desc", Status.NEW, 3);
+    private final SubTask subTask2 = new SubTask("name2", "desc2", Status.IN_PROGRESS, 3);
     @Test
     public void checkSubtaskCannotBeOwnTask() {
         subTask.setId(3);

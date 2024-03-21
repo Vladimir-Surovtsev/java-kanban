@@ -1,22 +1,22 @@
 package service;
 
 import model.Epic;
+import model.Status;
 import model.SubTask;
 import model.Task;
-import model.TaskStatus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class InMemoryTaskManager implements TaskManager {
-    private final HashMap<Integer, Task> tasks;
-    private final HashMap<Integer, Epic> epics;
-    private final HashMap<Integer, SubTask> subTasks;
-    private final HistoryManager historyStorage;
-    private int seq = 0;
+    protected final HashMap<Integer, Task> tasks;
+    protected final HashMap<Integer, Epic> epics;
+    protected final HashMap<Integer, SubTask> subTasks;
+    protected final HistoryManager historyStorage;
+    protected int seq = 0;
 
-    private int generateId() {
+    protected int generateId() {
         return ++seq;
     }
 
@@ -192,19 +192,19 @@ public class InMemoryTaskManager implements TaskManager {
         int countNew = 0;
         int countDone = 0;
         for (int id : epic.getSubTasksId()) {
-            if (subTasks.get(id).getStatus() == TaskStatus.NEW) {
+            if (subTasks.get(id).getStatus() == Status.NEW) {
                 countNew++;
             }
-            if (subTasks.get(id).getStatus() == TaskStatus.DONE) {
+            if (subTasks.get(id).getStatus() == Status.DONE) {
                 countDone++;
             }
         }
         if (countNew == epic.getSubTasksId().size()) {
-            epic.setStatus(TaskStatus.NEW);
+            epic.setStatus(Status.NEW);
         } else if (countDone == epic.getSubTasksId().size()) {
-            epic.setStatus(TaskStatus.DONE);
+            epic.setStatus(Status.DONE);
         } else {
-            epic.setStatus(TaskStatus.IN_PROGRESS);
+            epic.setStatus(Status.IN_PROGRESS);
         }
     }
 
