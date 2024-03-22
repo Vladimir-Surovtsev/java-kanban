@@ -48,9 +48,9 @@ public class Task {
         return TaskType.TASK;
     }
 
-    public Integer getEpicId() {
-        return null;
-    }
+//    public Integer getEpicId() {
+//        return null;
+//    }
 
     @Override
     public boolean equals(Object object) {
