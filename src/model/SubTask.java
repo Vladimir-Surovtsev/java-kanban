@@ -3,8 +3,9 @@ package model;
 public class SubTask extends Task {
     private int epicId;
 
-    public SubTask(String name, String description, TaskStatus taskStatus) {
-        super(name, description, taskStatus);
+    public SubTask(String name, String description, Status status, int epicId) {
+        super(name, description, status);
+        this.epicId = epicId;
     }
 
     public void setEpicId(int id) {
@@ -14,8 +15,13 @@ public class SubTask extends Task {
         this.epicId = id;
     }
 
-    public int getEpicId() {
+    public Integer getEpicId() {
         return epicId;
+    }
+
+    @Override
+    public TaskType getType() {
+        return TaskType.SUBTASK;
     }
 
 }

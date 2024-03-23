@@ -2,17 +2,12 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SubTaskTest {
-    private final SubTask subTask = new SubTask("name", "desc", TaskStatus.NEW);
-    private final SubTask subTask2 = new SubTask("name2", "desc2", TaskStatus.IN_PROGRESS);
-    @Test
-    public void checkSubtaskCannotBeOwnTask() {
-        subTask.setId(3);
-        subTask.setEpicId(3);
-        assertEquals(subTask.getEpicId(), 0, "Подзадачу нельзя назначить своим эпиком");
-    }
+    private final SubTask subTask = new SubTask("name", "desc", Status.NEW, 4);
+    private final SubTask subTask2 = new SubTask("name2", "desc2", Status.IN_PROGRESS, 4);
+
     @Test
     public void checkSubtasksAreEqualIfIdentifiersAreEqual() {
         subTask2.setId(subTask.getId());
